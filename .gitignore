@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dataset and MRI images
+data/
+*.png
+*.jpg
+*.jpeg
+*.nii
+*.nii.gz
+
+# Trained model weights
+*.pt
+*.pth
+*.h5
+*.pkl
