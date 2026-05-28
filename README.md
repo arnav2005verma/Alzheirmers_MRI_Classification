@@ -54,11 +54,11 @@ Dataset: [Alzheimer's Disease MRI Dataset — Mendeley Data](https://data.mendel
 
 ## Setup
 
-\```bash
+```bash
 git clone https://github.com/arnav2005verma/alzheimers-mri-classification
 cd alzheimers-mri-classification
 pip install -r requirements.txt
-\```
+```
 
 Download the dataset and place it in a `data/` folder with subfolders:
 `data/MildDemented/`, `data/ModerateDemented/`, `data/NonDemented/`, `data/VeryMildDemented/`
