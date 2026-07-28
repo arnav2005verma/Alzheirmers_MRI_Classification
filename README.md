@@ -23,7 +23,7 @@ A hybrid AI pipeline that classifies brain MRI scans into four Alzheimer's stage
 ### Class-wise Performance
 | Class | Precision | Recall | F1-Score | Support |
 |-------|-----------|--------|----------|---------|
-| Non-Demented | 0.89 | 0.87 | 0.88 | 392 |
+| Non-Demented | 0.89 | 0.87 | 0.88 | 320 |
 | Very Mild Demented | 0.89 | 0.87 | 0.88 | 392 |
 | Mild Demented | 0.93 | 0.97 | 0.95 | 392 |
 | Moderate Demented | **1.00** | **1.00** | **1.00** | 292 |
@@ -37,11 +37,16 @@ A hybrid AI pipeline that classifies brain MRI scans into four Alzheimer's stage
 | Very Mild Demented (Class 3) | **0.98** |
 
 ### Key Highlights
-- Moderate Demented cases achieved **perfect classification** (Precision = Recall = F1 = 1.00), reflecting highly distinct structural patterns in late-stage AD
+- Moderate Demented cases achieved **perfect classification** (Precision = Recall = F1 = 1.00) — see Limitations below regarding how this figure should be interpreted
 - Minor overlap observed between Non-Demented and Very Mild Demented stages, which is **clinically expected** due to subtle structural similarities in early disease progression
 - t-SNE projections confirmed **strong feature separability** across all four classes
 - KDE probability plots showed **well-calibrated, high-confidence predictions** with probability mass concentrated at 0 and 1
-- Model was evaluated exclusively on **non-augmented, original MRI scans** to ensure real-world applicability
+
+## Limitations
+
+- **Splits are not grouped by subject.** `load_data()` draws train/validation/test from the augmented dataset directory (`AGD`) using `train_test_split(..., stratify=labels)`, which stratifies by class only. Because the augmented set contains multiple images derived from each original scan, derivatives of the same source scan can appear in more than one split. The metrics above should therefore be read as within-dataset performance, **not** as evidence of subject-level generalisation.
+- **The reported metrics were not computed on original, non-augmented scans.** The `test_single_images()` routine does read from the original directory (`OD`), but it loads a single image per class for visualisation and contributes to no reported metric.
+- The gap between final training accuracy (0.989) and validation accuracy (0.911), and the perfect scores on the smallest class, are both consistent with the leakage described above.
 
 ## Method
 1. **EfficientNetV2-S** (pretrained on ImageNet) → deep feature extraction (1280-dim)
