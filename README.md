@@ -55,8 +55,8 @@ Dataset: [Alzheimer's Disease MRI Dataset — Mendeley Data](https://data.mendel
 ## Setup
 
 ```bash
-git clone https://github.com/arnav2005verma/alzheimers-mri-classification
-cd alzheimers-mri-classification
+git clone https://github.com/arnav2005verma/Alzheirmers_MRI_Classification
+cd Alzheirmers_MRI_Classification
 pip install -r requirements.txt
 ```
 
